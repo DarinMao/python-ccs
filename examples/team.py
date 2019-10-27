@@ -1,6 +1,6 @@
 import ccs
 
-team = ccs.team("12-2238")
+team = ccs.team(raw_input("Team Number: "))
 summary = team.summary
 print "Team {} ({} {}) - {} images ({} points) - {}/{} {}".format(
       summary.number, summary.division, summary.location, 

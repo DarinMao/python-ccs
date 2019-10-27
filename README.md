@@ -69,6 +69,7 @@ This class represents a team as a combination of its summary and list of images
 #### Properties
 * `summary` - a [TeamSummary](#teamsummary) object representing the team
 * `images` - a list of [Image](#image) objects for the team
+* `chart` - a [Chart](#chart) object with the team scores per image over time
 
 ### TeamSummary
 This class represents a summary of a team
@@ -81,3 +82,11 @@ This class represents a summary of a team
 * `scoretime` - the score time of the team
 * `warn` - any warnings assigned to the team
 * `score` - the current CCS score of the image
+
+### Chart
+This class represents the score chart of a team
+#### Properties
+* `data` - the raw chart data in the form of a table
+* `images` - the names of the images
+* `timestamps` - the horizontal axis timestamps
+* `scores` - a list of the scores over time (`scores[k]` contains the scores for `images[k]`; the graph for `images[k]` is defined by `(x, y) = (timestamps, scores[k])`)

@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 from .image import Image
 from .team import Team
 from .teamsummary import TeamSummary
+from .chart import Chart
 
 ### DIVISIONS ################################################################
 MIDDLE_SCHOOL = "Middle School"
@@ -61,4 +63,10 @@ def team(number):
       image = Image(cols[0], cols[1].lstrip(), int(cols[2]), int(cols[3]), 
             int(cols[4]), int(cols[5]), cols[6])
       images.append(image)
-   return Team(summary, images)
+   chart_start_key = "arrayToDataTable("
+   chart_start = r.content.index(chart_start_key)+len(chart_start_key)
+   chart_end = r.content.index(");", chart_start)
+   chart_table = r.content[chart_start:chart_end]
+   chart_data = json.loads((chart_table[:chart_table.rfind(",")]+"]").replace("'", '"'))
+   chart = Chart(chart_data)
+   return Team(summary, images, chart)
