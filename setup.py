@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name="ccs",
-      version="0.2",
+      version="0.3",
       description="Python wrapper for online CyberPatriot scoreboard",
       url="https://github.com/DarinMao/python-ccs/",
       author="Darin Mao",
