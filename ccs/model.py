@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Chart:
    def __init__(self, data):
@@ -15,7 +15,8 @@ class Chart:
 class Image:
    def __init__(self, name, time, found, remaining, penalties, score, warn):
       self.name = name
-      self.time = time
+      time = time.split(":")
+      self.time = timedelta(hours=int(time[0]), minutes=int(time[1]))
       self.found = found
       self.remaining = remaining
       self.penalties = penalties
@@ -34,14 +35,17 @@ class TeamSummary:
       self.location = location
       self.division = division
       self.images = images
-      self.playtime = playtime
-      self.scoretime = scoretime
+      playtime = playtime.split(":")
+      self.playtime = timedelta(hours=int(playtime[0]), minutes=int(playtime[1]))
+      if scoretime is None:
+         self.scoretime = timedelta(seconds=self.playtime.total_seconds())
+      else:
+         scoretime = scoretime.split(":")
+         self.scoretime = timedelta(hours=int(scoretime[0]), minutes=int(scoretime[1]))
       self.warn = warn
       self.ccs = ccs
       self.adjust = adjust
       self.cisco = cisco
       self.score = score
-      if scoretime is None:
-         self.scoretime = playtime
       if score is None:
          self.score = ccs
