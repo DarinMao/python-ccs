@@ -36,11 +36,11 @@ def team(number):
    cols = [c.text for c in tables[0].find_all("tr")[1].find_all("td")]
    if len(cols) > 9:
       summary = TeamSummary(cols[0], cols[1], cols[2], int(cols[4]), cols[5], 
-            cols[6], cols[7], cols[8], float(cols[9]), float(cols[10]), 
+            cols[6], cols[7], int(cols[8]), float(cols[9]), float(cols[10]), 
             float(cols[11]))
    else:
       summary = TeamSummary(cols[0], cols[1], cols[2], int(cols[4]), cols[5], 
-            cols[6], cols[7], cols[8])
+            cols[6], cols[7], int(cols[8]))
    images = []
    for row in tables[1].find_all("tr")[1:]:
       cols = [c.text for c in row.find_all("td")]
