@@ -30,10 +30,11 @@ class Team:
       self.chart = chart
 
 class TeamSummary:
-   def __init__(self, number, location, division, images, playtime, scoretime, warn, ccs, adjust=0.0, cisco=0.0, score=None):
+   def __init__(self, number, location, division, tier, images, playtime, scoretime, warn, ccs, adjust=0.0, cisco=0.0, score=None):
       self.number = number
       self.location = location
       self.division = division
+      self.tier = tier
       self.images = images
       playtime = playtime.split(":")
       self.playtime = timedelta(hours=int(playtime[0]), minutes=int(playtime[1]))
