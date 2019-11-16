@@ -4,6 +4,7 @@ import json
 
 from .model import *
 from .const import *
+from .exception import *
 
 def scoreboard(division="", sort=""):
    p = (("division", division), ("sort", sort))
@@ -11,7 +12,7 @@ def scoreboard(division="", sort=""):
       params=p)
    r.raise_for_status()
    if r.content == "":
-      raise requests.exceptions.RequestException("Scoreboard is down")
+      raise ScoreboardDownException("Scoreboard is down")
    soup = BeautifulSoup(r.content, "html.parser")
    teams = []
    for row in soup.find_all("tr", {"class": "clickable"}):
@@ -31,10 +32,10 @@ def team(number):
    r = requests.get("http://scoreboard.uscyberpatriot.org/team.php",
       params=p)
    if r.history:
-      raise ValueError("Invalid team number")
+      raise NoSuchTeamException("Team does not exist on scoreboard")
    r.raise_for_status() 
    if r.content == "":
-      raise requests.exceptions.RequestException("Scoreboard is down")
+      raise ScoreboardDownException("Scoreboard is down")
    soup = BeautifulSoup(r.content, "html.parser")
    tables = soup.find_all("table", {"class": "CSSTableGenerator"})
    cols = [c.text for c in tables[0].find_all("tr")[1].find_all("td")]
