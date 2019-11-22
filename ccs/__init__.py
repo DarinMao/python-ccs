@@ -17,10 +17,14 @@ def scoreboard(division="", sort=""):
    teams = []
    for row in soup.find_all("tr", {"class": "clickable"}):
       cols = [c.text for c in row.find_all("td")]
-      if len(cols) > 9:
+      if len(cols) > 11:
          team = TeamSummary(cols[1], cols[2], cols[3], cols[4], int(cols[5]), 
                cols[6], None, cols[7], int(cols[8]), float(cols[9]),
                float(cols[10]), float(cols[11]))
+      elif len(cols) == 11:
+         team = TeamSummary(cols[1], cols[2], cols[3], cols[4], int(cols[5]), 
+               cols[6], None, cols[7], int(cols[8]), float(cols[9]),
+               0.0, float(cols[10]))
       else:
          team = TeamSummary(cols[1], cols[2], cols[3], cols[4], int(cols[5]), 
                cols[6], None, cols[7], int(cols[8]))
@@ -39,10 +43,14 @@ def team(number):
    soup = BeautifulSoup(r.content, "html.parser")
    tables = soup.find_all("table", {"class": "CSSTableGenerator"})
    cols = [c.text for c in tables[0].find_all("tr")[1].find_all("td")]
-   if len(cols) > 9:
+   if len(cols) > 11:
       summary = TeamSummary(cols[0], cols[1], cols[2], cols[3], int(cols[4]), cols[5], 
             cols[6], cols[7], int(cols[8]), float(cols[9]), float(cols[10]), 
             float(cols[11]))
+   elif len(cols) == 11:
+      summary = TeamSummary(cols[0], cols[1], cols[2], cols[3], int(cols[4]), cols[5], 
+            cols[6], cols[7], int(cols[8]), float(cols[9]), 0.0, 
+            float(cols[10]))
    else:
       summary = TeamSummary(cols[0], cols[1], cols[2], cols[3], int(cols[4]), cols[5], 
             cols[6], cols[7], int(cols[8]))

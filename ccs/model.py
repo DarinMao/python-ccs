@@ -50,3 +50,5 @@ class TeamSummary:
       self.score = score
       if score is None:
          self.score = ccs
+      if self.ccs + self.cisco != self.score:
+         self.cisco = self.score - self.ccs
