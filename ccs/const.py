@@ -1,4 +1,5 @@
 # Divisions
+ALL = "All"
 MIDDLE_SCHOOL = "Middle School"
 MS = MIDDLE_SCHOOL
 HIGH_SCHOOL = "High School"

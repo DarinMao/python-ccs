@@ -6,7 +6,7 @@ from .model import *
 from .const import *
 from .exception import *
 
-def scoreboard(division="", sort=""):
+def scoreboard(division=ALL, sort=""):
    p = (("division", division), ("sort", sort))
    r = requests.get("http://scoreboard.uscyberpatriot.org/",
       params=p)
