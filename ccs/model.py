@@ -37,12 +37,12 @@ class TeamSummary:
       self.tier = tier
       self.images = images
       playtime = playtime.split(":")
-      self.playtime = timedelta(hours=int(playtime[0]), minutes=int(playtime[1]))
+      self.playtime = timedelta(hours=int(playtime[0]), minutes=int(playtime[1]), seconds=int(playtime[2]))
       if scoretime is None:
          self.scoretime = timedelta(seconds=self.playtime.total_seconds())
       else:
          scoretime = scoretime.split(":")
-         self.scoretime = timedelta(hours=int(scoretime[0]), minutes=int(scoretime[1]))
+         self.scoretime = timedelta(hours=int(scoretime[0]), minutes=int(scoretime[1]), seconds=int(scoretime[2]))
       self.warn = warn
       self.ccs = ccs
       self.adjust = adjust
